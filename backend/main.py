@@ -3,7 +3,7 @@ import http
 import flask
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String, Boolean
+from sqlalchemy import Integer, String, Boolean, select
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped
 from werkzeug.exceptions import HTTPException
 
@@ -16,7 +16,7 @@ class Base(DeclarativeBase):
 
 
 # Connect to DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cafes.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///.cafes.db'
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
@@ -38,9 +38,6 @@ class Cafe(db.Model):
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
-    def set_new_values(self, new_values):
-
-
 
 with app.app_context():
     db.create_all()
@@ -61,7 +58,7 @@ def home():
 def cafes_get():
     q_sort_by = request.args.get('sort_by')
     q_sort_order = request.args.get('sort_order')
-    query = Cafe.query
+    query = select(Cafe)
 
     if q_sort_by in [column.name for column in Cafe.__table__.columns]:
         if q_sort_order == 'desc':
@@ -69,8 +66,9 @@ def cafes_get():
         else:
             query = query.order_by(getattr(Cafe, q_sort_by))
 
-    cafes = [cafe.to_dict() for cafe in query.all()]
-    return flask.jsonify(cafes=cafes)
+    results = db.session.scalars(query).all()
+    cafes = [cafe.to_dict() for cafe in results]
+    return flask.jsonify(cafes)
 
 
 @app.get('/cafes/random')
@@ -85,7 +83,7 @@ def cafes_get_search_by_location():
     cafes = db.session.execute(db.select(Cafe).where(Cafe.location == q_location).order_by(Cafe.name)).scalars()
     if not cafes:
         return flask.jsonify({"message": "Sorry, we don't have any cafe registered at this location."}), 404
-    return flask.jsonify(cafes=[cafe.to_dict() for cafe in cafes])
+    return flask.jsonify([cafe.to_dict() for cafe in cafes])
 
 
 @app.get('/cafes/<int:cafe_id>')
