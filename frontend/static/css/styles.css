@@ -1,3 +1,20 @@
-.cyan {
-    color: #63E6BE;
+#page-header {
+    height: 150px;
+    color: white;
+    background: #493628;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15),inset 0 -1px 0 rgba(255,255,255,0.15)
+}
+
+.dark-brown {
+    color: #493628;
+}
+
+.btn-primary {
+    background-color: #493628;
+    border-color: #493628;
+}
+
+.btn-primary:hover {
+    background-color: #AB886D;
+    border-color: #AB886D;
 }

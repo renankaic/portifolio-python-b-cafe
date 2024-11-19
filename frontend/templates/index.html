@@ -1,6 +1,6 @@
 {% include "header.html" %}
 
-<main class="container">
+<main class="container mt-3">
     <div class="row gx-2 gy-4">
         {% for cafe in cafes %}
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
@@ -22,16 +22,16 @@
                             <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Coffee price"><i class="fa-solid fa-mug-hot"></i></td>
                         </tr>
                         <tr>
-                            <td>{% if cafe.has_sockets == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{%
+                            <td>{% if cafe.has_sockets == True %}<i class="fa-solid fa-check dark-brown"></i>{% else %}-{%
                                 endif %}
                             </td>
-                            <td>{% if cafe.has_wifi == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{% endif
+                            <td>{% if cafe.has_wifi == True %}<i class="fa-solid fa-check dark-brown"></i>{% else %}-{% endif
                                 %}
                             </td>
-                            <td>{% if cafe.has_toilet == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{%
+                            <td>{% if cafe.has_toilet == True %}<i class="fa-solid fa-check dark-brown"></i>{% else %}-{%
                                 endif %}
                             </td>
-                            <td>{% if cafe.can_take_calls == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{%
+                            <td>{% if cafe.can_take_calls == True %}<i class="fa-solid fa-check dark-brown"></i>{% else %}-{%
                                 endif %}
                             </td>
                             <td>{{ cafe.seats }}</td>
