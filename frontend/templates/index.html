@@ -1,0 +1,28 @@
+{% include "header.html" %}
+
+<main class="container">
+    <div class="row gx-2 gy-4">
+        {% for cafe in cafes %}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card">
+                <img src="{{ cafe.img_url }}" class="card-img-top" alt="{{ cafe.name}} photo" style="height: 320px">
+                <div class="card-body">
+                    <h5 class="card-title">{{ cafe.name}} </h5>
+                    <p class="card-text">{{ cafe.location }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">An item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{ cafe.map_url }}" class="card-link"><i class="fa-solid fa-map"></i></a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+{% include "footer.html" %}
