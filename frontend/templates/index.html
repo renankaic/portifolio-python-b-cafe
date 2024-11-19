@@ -13,32 +13,30 @@
                 <div class="card-body">
                     <table class="table table-fluid text-center table-borderless">
                         <tbody>
-                            <tr>
-                                <td><i class="fa-solid fa-charging-station"></i></td>
-                                <td><i class="fa-solid fa-wifi"></i></td>
-                                <td><i class="fa-solid fa-restroom"></i></td>
-                                <td><i class="fa-solid fa-phone-volume"></i></td>
-                                <td><i class="fa-solid fa-chair"></i></td>
-                                <td><i class="fa-solid fa-mug-hot"></i></td>
-
-                            </tr>
-                            <tr>
-                                <td>{% if cafe.has_sockets == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{%
-                                    endif %}
-                                </td>
-                                <td>{% if cafe.has_wifi == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{% endif
-                                    %}
-                                </td>
-                                <td>{% if cafe.has_toilet == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{%
-                                    endif %}
-                                </td>
-                                <td>{% if cafe.can_take_calls == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{%
-                                    endif %}
-                                </td>
-                                <td>{{ cafe.seats }}</td>
-                                <td>{{ cafe.coffee_price }}</td>
-
-                            </tr>
+                        <tr>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Has charging sockets?"><i class="fa-solid fa-charging-station" ></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Has Wi-Fi?"><i class="fa-solid fa-wifi"></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Has toilet?"><i class="fa-solid fa-restroom"></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Can take calls?"><i class="fa-solid fa-phone-volume"></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Number of seats"><i class="fa-solid fa-chair"></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Coffee price"><i class="fa-solid fa-mug-hot"></i></td>
+                        </tr>
+                        <tr>
+                            <td>{% if cafe.has_sockets == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{%
+                                endif %}
+                            </td>
+                            <td>{% if cafe.has_wifi == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{% endif
+                                %}
+                            </td>
+                            <td>{% if cafe.has_toilet == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{%
+                                endif %}
+                            </td>
+                            <td>{% if cafe.can_take_calls == True %}<i class="fa-solid fa-check cyan"></i>{% else %}-{%
+                                endif %}
+                            </td>
+                            <td>{{ cafe.seats }}</td>
+                            <td>{{ cafe.coffee_price }}</td>
+                        </tr>
                         </tbody>
                     </table>
                     <div class="d-grid col-12">
