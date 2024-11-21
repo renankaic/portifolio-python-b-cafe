@@ -18,3 +18,7 @@
     background-color: #AB886D;
     border-color: #AB886D;
 }
+
+#div-cafes .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+}
