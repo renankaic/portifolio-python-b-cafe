@@ -9,6 +9,10 @@
     color: #493628;
 }
 
+.btn {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
 .btn-primary {
     background-color: #493628;
     border-color: #493628;
@@ -21,4 +25,9 @@
 
 #div-cafes .card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-switch .form-check-input:checked {
+    background-color: #493628;
+    border-color: #493628;
 }

@@ -1,7 +1,7 @@
+from flask_bootstrap import SwitchField
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.fields.numeric import IntegerField
-from wtforms.fields.simple import BooleanField
+from wtforms import StringField, DecimalField
+from wtforms.fields.simple import SubmitField
 from wtforms.validators import DataRequired, URL, Length
 
 
@@ -10,8 +10,10 @@ class NewCafeForm(FlaskForm):
     map_url = StringField(label='Map URL', validators=[DataRequired(), URL()])
     img_url = StringField(label='Image URL', validators=[DataRequired(), URL()])
     location = StringField(label='Location', validators=[DataRequired()])
-    has_sockets = BooleanField(label='Has sockets for laptop charging?', validators=[DataRequired()])
-    has_toilet = BooleanField(label='Has toilet?', validators=[DataRequired()])
-    has_wifi = BooleanField(label='Has Wi-Fi?', validators=[DataRequired()])
-    seats = IntegerField(label='Number of seats', validators=[DataRequired(), Length(min=1)])
-    submit = SubmitField('Register this Cafe')
+    seats = StringField(label='Number of seats (Example: 10-15)', validators=[DataRequired(), Length(min=1)])
+    coffee_price = DecimalField(label='Coffee price', validators=[DataRequired()], places=2)
+    has_sockets = SwitchField(label='Has sockets for laptop charging?')
+    has_wifi = SwitchField(label='Has Wi-Fi?')
+    has_toilet = SwitchField(label='Has toilet?')
+    can_take_calls = SwitchField(label='Can take calls?')
+    submit = SubmitField('Submit')
