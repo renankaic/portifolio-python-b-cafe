@@ -3,7 +3,7 @@ import http
 import flask
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String, Boolean, select, DateTime, func
+from sqlalchemy import Integer, String, Boolean, select, DateTime, func, Float
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped
 from werkzeug.exceptions import HTTPException
 
@@ -22,8 +22,8 @@ db.init_app(app)
 
 
 # Table CAFES
-class Cafe(db.Model):
-    __table_name__ = "cafes"
+class Cafe(Base):
+    __tablename__ = "cafes"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(250), nullable=False, unique=True)
@@ -35,7 +35,7 @@ class Cafe(db.Model):
     has_wifi: Mapped[bool] = mapped_column(Boolean, nullable=False)
     can_take_calls: Mapped[bool] = mapped_column(Boolean, nullable=False)
     seats: Mapped[str] = mapped_column(String(250))
-    coffee_price: Mapped[str] = mapped_column(String(250))
+    coffee_price: Mapped[float] = mapped_column(Float)
     created_on: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
 
     def to_dict(self):
