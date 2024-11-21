@@ -3,7 +3,7 @@ import http
 import flask
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String, Boolean, select
+from sqlalchemy import Integer, String, Boolean, select, DateTime, func
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped
 from werkzeug.exceptions import HTTPException
 
@@ -21,8 +21,10 @@ db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
 
-# Table CAFE
+# Table CAFES
 class Cafe(db.Model):
+    __table_name__ = "cafes"
+
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(250), nullable=False, unique=True)
     map_url: Mapped[str] = mapped_column(String(500), nullable=False, unique=True)
@@ -34,6 +36,7 @@ class Cafe(db.Model):
     can_take_calls: Mapped[bool] = mapped_column(Boolean, nullable=False)
     seats: Mapped[str] = mapped_column(String(250))
     coffee_price: Mapped[str] = mapped_column(String(250))
+    created_on: Mapped[DateTime] = mapped_column(DateTime, default=func.now())
 
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
