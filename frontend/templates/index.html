@@ -41,7 +41,7 @@
                                 endif %}
                             </td>
                             <td>{{ cafe.seats }}</td>
-                            <td>{{ cafe.coffee_price }}</td>
+                            <td>£{{ "{:.2f}".format(cafe.coffee_price) }}</td>
                         </tr>
                         </tbody>
                     </table>
