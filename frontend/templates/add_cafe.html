@@ -1,0 +1,20 @@
+{% include "header.html" %}
+{% block content %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+<main class="container mt-3">
+    <div class="row gx-2 justify-content-start">
+        <div class="mb-2">
+            <a href="{{ url_for('list_cafes') }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Go back"><i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+    </div>
+
+    <div class="row gx-2 gy-4" id="div-add-cafe">
+        <div class="col-lg-12 col-md-12 col-sm-12 mx-auto">
+            <h3>Create new Café</h3>
+            {{ render_form(form, novalidate=True,  horizontal_columns=('lg', 2, 2)) }}
+        </div>
+    </div>
+</main>
+{% include "footer.html" %}
+{% endblock %}
