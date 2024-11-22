@@ -2,8 +2,9 @@ import os
 from http import HTTPMethod
 
 import requests
-from flask import Flask, render_template, request, redirect, url_for
-from flask_bootstrap import Bootstrap5
+from flask import Flask, render_template, redirect, url_for, flash
+from flask_bootstrap import Bootstrap5, Markup
+
 from forms import NewCafeForm
 
 API_BASE_URL = os.environ.get('API_BASE_URL')
@@ -26,6 +27,7 @@ def add_cafe():
     if form.validate_on_submit():
         r = requests.post(url=f'{API_BASE_URL}/cafes', data=form.data)
         r.raise_for_status()
+        flash(message=Markup('<i class="bi bi-check-circle"></i> The new cafe has been registered successfully!'), category='success')
         return redirect(url_for('list_cafes'))
     return render_template(template_name_or_list='add_cafe.html', form=form)
 

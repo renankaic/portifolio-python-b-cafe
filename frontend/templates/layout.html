@@ -39,14 +39,18 @@
             href="{{ url_for('static', filename='css/styles.css') }}"
             rel="stylesheet"
     />
+
+    <!--    Bootstrap icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     {% endblock %}
 
     <title>B-Cafés!{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
 <body>
+    {% from 'bootstrap5/utils.html' import render_messages %}
     <div id="wrapper">
-        <header class="container-fluid dark-brown-bg">
+        <header class="container-fluid dark-brown-bg mb-3">
             <div class="row py-3">
                 <div class="col-12 text-center align-middle ">
                     <h1>B-Cafés!</h1>
@@ -55,11 +59,17 @@
             </div>
         </header>
 
+        <div class="container">
+            <div class="row">
+                {{ render_messages(dismissible=True, dismiss_animate=True) }}
+            </div>
+        </div>
+
         <main id="content">
             {% block content %}{% endblock %}
         </main>
 
-        <footer class="container-fluid dark-brown-bg align-middle mt-2 py-3">
+        <footer class="container-fluid dark-brown-bg align-middle py-3">
             <div class="col-12 text-center small fsc-italic align-middle">
                 Copyright &copy; B-Cafés 2024
             </div>

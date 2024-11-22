@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
+{% block title %} - Register a new Café{% endblock %}
 {% block content %}
 {% from 'bootstrap5/form.html' import render_form %}
-<section class="container mt-3">
+<section class="container">
     <div class="row gx-2 justify-content-start">
         <div class="mb-2">
             <a href="{{ url_for('list_cafes') }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Go back"><i class="fa-solid fa-arrow-left"></i></a>
