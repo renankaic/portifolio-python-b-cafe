@@ -4,7 +4,8 @@
 <section class="container">
     <div class="row justify-content-end">
         <div class="d-grid col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-2">
-            <a class="btn btn-primary" href="{{ url_for('add_cafe') }}"><i class="fa-solid fa-plus"></i> Add new cafe</a>
+            <a class="btn btn-primary" href="{{ url_for('cafe_add') }}"><i class="fa-solid fa-plus"></i> Add new
+                cafe</a>
         </div>
     </div>
 
@@ -13,6 +14,7 @@
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
             <div class="card">
                 <img src="{{ cafe.img_url }}" class="card-img-top" alt="{{ cafe.name}} photo" style="height: 240px">
+
                 <div class="card-body">
                     <h5 class="card-title text-break">{{ cafe.name }} </h5>
                     <p class="card-text">{{ cafe.location }}</p>
@@ -21,24 +23,34 @@
                     <table class="table table-fluid text-center table-borderless">
                         <tbody>
                         <tr>
-                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Has charging sockets?"><i class="fa-solid fa-charging-station" ></i></td>
-                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Has Wi-Fi?"><i class="fa-solid fa-wifi"></i></td>
-                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Has toilet?"><i class="fa-solid fa-restroom"></i></td>
-                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Can take calls?"><i class="fa-solid fa-phone-volume"></i></td>
-                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Number of seats"><i class="fa-solid fa-chair"></i></td>
-                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Coffee price"><i class="fa-solid fa-mug-hot"></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Has charging sockets?">
+                                <i class="fa-solid fa-charging-station"></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Has Wi-Fi?"><i
+                                    class="fa-solid fa-wifi"></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Has toilet?"><i
+                                    class="fa-solid fa-restroom"></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Can take calls?"><i
+                                    class="fa-solid fa-phone-volume"></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Number of seats"><i
+                                    class="fa-solid fa-chair"></i></td>
+                            <td data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Coffee price"><i
+                                    class="fa-solid fa-mug-hot"></i></td>
                         </tr>
                         <tr>
-                            <td>{% if cafe.has_sockets == True %}<i class="fa-solid fa-check dark-brown"></i>{% else %}-{%
+                            <td>{% if cafe.has_sockets == True %}<i class="fa-solid fa-check dark-brown"></i>{% else
+                                %}-{%
                                 endif %}
                             </td>
-                            <td>{% if cafe.has_wifi == True %}<i class="fa-solid fa-check dark-brown"></i>{% else %}-{% endif
+                            <td>{% if cafe.has_wifi == True %}<i class="fa-solid fa-check dark-brown"></i>{% else %}-{%
+                                endif
                                 %}
                             </td>
-                            <td>{% if cafe.has_toilet == True %}<i class="fa-solid fa-check dark-brown"></i>{% else %}-{%
+                            <td>{% if cafe.has_toilet == True %}<i class="fa-solid fa-check dark-brown"></i>{% else
+                                %}-{%
                                 endif %}
                             </td>
-                            <td>{% if cafe.can_take_calls == True %}<i class="fa-solid fa-check dark-brown"></i>{% else %}-{%
+                            <td>{% if cafe.can_take_calls == True %}<i class="fa-solid fa-check dark-brown"></i>{% else
+                                %}-{%
                                 endif %}
                             </td>
                             <td>{{ cafe.seats }}</td>
@@ -51,9 +63,16 @@
                                 class="fa-solid fa-map"></i> See on Maps</a>
                     </div>
                 </div>
+                <div class="card-footer text-end">
+                    <small class="text-body-secondary card-actions">
+                        <i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#cafe-delete-confirm" data-bs-cafe-id="{{ cafe.id }}" data-bs-cafe-name="{{ cafe.name }}" ></i>
+                    </small>
+                </div>
             </div>
         </div>
         {% endfor %}
+
+        {% include "modal_delete.html" %}
     </div>
 </section>
 {% endblock %}
